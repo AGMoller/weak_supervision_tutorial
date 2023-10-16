@@ -10,11 +10,11 @@ from spacy.training import Corpus
 from spacy.tokens import Span
 
 
-def load_data_split(split="train", all_labels=["DET"], subset=None):
+def load_data_split(split="train", language="UD_Danish-DDT", all_labels=["DET"], subset=None):
     part3_path = ""
 
     # Path to the dataset file
-    data_path = os.path.join("corpus", "UD_English-EWT")
+    data_path = os.path.join("corpus", language)
 
     # Create a blank spacy pipeline
     nlp = spacy.blank("xx")
@@ -144,7 +144,7 @@ def get_frequent_words(corpus, num_words):
     words = [token.text.lower() for doc in corpus for token in doc if not token.is_punct]
 
     # Remove stopwords
-    words = [w for w in words if w not in stopwords.words('english')]
+    words = [w for w in words if w not in stopwords.words('danish')]
 
     # Find the most frequent words
     word_freq = Counter(words)
